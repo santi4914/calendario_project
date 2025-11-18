@@ -133,14 +133,15 @@ class NotaUpdateView(UpdateView):
     """
     Vista para editar una nota existente.
     """
-# ESTE ES UN COMENTARIO SUPERMEGA LARGO EXTRA PARA PROBAR EL FUNCIONAMIENTO  DE LA HERRAMIENTA CI LLAMADA FLAKE8 QUE DEBERIA DE FALLA SI O SI 
+
+    # ESTE ES UN COMENTARIO SUPERMEGA LARGO EXTRA PARA PROBAR EL FUNCIONAMIENTO  DE LA HERRAMIENTA CI LLAMADA FLAKE8 QUE DEBERIA DE FALLA SI O SI
     model = Nota
     form_class = NotaForm
     template_name = "notas/nota_form.html"
 
     def get_success_url(self):
         """
-                                                                                           Redirige al detalle de la nota después de la edición.
+        Redirige al detalle de la nota después de la edición.
         """
         nota = self.object
         return reverse_lazy("notas:detalle_nota", kwargs={"pk": nota.pk})

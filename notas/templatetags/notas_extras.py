@@ -1,4 +1,5 @@
 """Custom template filters for the `notas` app."""
+
 from django import template
 
 register = template.Library()
