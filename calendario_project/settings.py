@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'notas', # Nuestra aplicación de notas
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
