@@ -11,4 +11,4 @@ class NotaAdmin(admin.ModelAdmin):
     date_hierarchy = "fecha"  # Agrega un navegador de fechas
 
 
-admin.site.register(Nota, NotaAdmin)  # Registra el modelo Nota con su personalización
+admin.site.register(Nota, NotaAdmin)

@@ -1,0 +1,3 @@
+[tool.black]
+line-length = 88
+# You can add target-version if you want, e.g. ['py310']
