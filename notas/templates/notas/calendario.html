@@ -1,6 +1,6 @@
 <!-- notas/templates/notas/calendario.html -->
 {% extends "notas/base.html" %}
-{% load humanize %} <!-- Para nombres de meses y fechas más amigables si lo usas -->
+{% load humanize notas_extras %} <!-- Para nombres de meses y fechas más amigables si lo usas -->
 
 {% block title %}Calendario - {{ current_date|date:"F Y" }}{% endblock %}
 

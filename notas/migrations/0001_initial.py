@@ -7,23 +7,38 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Nota',
+            name="Nota",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('titulo', models.CharField(max_length=100, verbose_name='Título')),
-                ('contenido', models.TextField(blank=True, null=True, verbose_name='Contenido')),
-                ('fecha', models.DateField(verbose_name='Fecha')),
-                ('fecha_creacion', models.DateTimeField(auto_now_add=True, verbose_name='Fecha de creación')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("titulo", models.CharField(max_length=100, verbose_name="Título")),
+                (
+                    "contenido",
+                    models.TextField(blank=True, null=True, verbose_name="Contenido"),
+                ),
+                ("fecha", models.DateField(verbose_name="Fecha")),
+                (
+                    "fecha_creacion",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Fecha de creación"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Nota',
-                'verbose_name_plural': 'Notas',
-                'ordering': ['fecha', 'titulo'],
+                "verbose_name": "Nota",
+                "verbose_name_plural": "Notas",
+                "ordering": ["fecha", "titulo"],
             },
         ),
     ]
