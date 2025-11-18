@@ -22,7 +22,7 @@ jobs:
     - name: Set up Python # Paso 2: Configurar el entorno de Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.x' # Puedes especificar una versión exacta como '3.9' o '3.10'
+        python-version: '3.13' # Puedes especificar una versión exacta como '3.9' o '3.10'
 
     - name: Install dependencies # Paso 3: Instalar las dependencias, incluyendo flake8
       run: |

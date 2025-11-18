@@ -1,6 +1,7 @@
 # notas/models.py
 from django.db import models
-from django.utils import timezone  # Importa timezone para campos de fecha y hora
+
+# Importa timezone para campos de fecha y hora (eliminado, no usado)
 
 
 class Nota(models.Model):
@@ -17,7 +18,8 @@ class Nota(models.Model):
     titulo = models.CharField(max_length=100, verbose_name="Título")
     contenido = models.TextField(
         verbose_name="Contenido", blank=True, null=True
-    )  # `blank=True` permite que sea vacío en formularios, `null=True` permite que sea nulo en DB
+    )  # `blank=True` permite que sea vacío en formularios,
+    # `null=True` permite que sea nulo en DB
     fecha = models.DateField(verbose_name="Fecha")
     fecha_creacion = models.DateTimeField(
         auto_now_add=True, verbose_name="Fecha de creación"

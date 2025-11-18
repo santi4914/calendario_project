@@ -1,7 +1,7 @@
 # notas/views.py
 import calendar
 from datetime import date, timedelta
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import redirect
 from django.views.generic import (
     TemplateView,
     CreateView,
@@ -9,9 +9,9 @@ from django.views.generic import (
     DeleteView,
     DetailView,
 )
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from .models import Nota
-from .forms import NotaForm  # Lo crearemos en el siguiente paso
+from .forms import NotaForm
 
 
 class CalendarioView(TemplateView):
@@ -52,18 +52,14 @@ class CalendarioView(TemplateView):
         context["prev_month"] = prev_month.month
         context["next_month_year"] = next_month.year
         context["next_month"] = next_month.month
-        context["current_month_name"] = current_date_obj.strftime(
-            "%B"
+        context["current_month_name"] = (
+            current_date_obj.strftime("%B")
         ).capitalize()  # Nombre del mes
 
-        # Obtener todas las notas para el mes actual
-        # Filtrar notas que caen dentro del rango del mes mostrado
-        first_day_of_month = date(year, month, 1)
-        last_day_of_month = date(year, month, calendar.monthrange(year, month)[1])
-
-        # También obtener notas para los días de la semana anterior/siguiente que se muestran en el calendario
-        first_day_shown = month_days[0][0]  # Primer día de la primera semana mostrada
-        last_day_shown = month_days[-1][-1]  # Último día de la última semana mostrada
+        # Obtener notas para los días de la semana anterior/siguiente
+        # que se muestran en el calendario
+        first_day_shown = month_days[0][0]  # Primer día mostrado
+        last_day_shown = month_days[-1][-1]  # Último día mostrado
 
         notes_in_month = Nota.objects.filter(
             fecha__range=(first_day_shown, last_day_shown)
@@ -134,6 +130,7 @@ class NotaUpdateView(UpdateView):
     Vista para editar una nota existente.
     """
 
+    # Comentario acortado para cumplir con flake8
     model = Nota
     form_class = NotaForm
     template_name = "notas/nota_form.html"
@@ -152,10 +149,8 @@ class NotaDeleteView(DeleteView):
     """
 
     model = Nota
-    template_name = "notas/nota_confirm_delete.html"  # Crea esta plantilla para confirmar la eliminación
-    success_url = reverse_lazy(
-        "notas:calendario"
-    )  # Redirige al calendario principal después de eliminar
+    template_name = "notas/nota_confirm_delete.html"
+    success_url = reverse_lazy("notas:calendario")
 
     def post(self, request, *args, **kwargs):
         # Obtener el objeto antes de eliminarlo para extraer la fecha
