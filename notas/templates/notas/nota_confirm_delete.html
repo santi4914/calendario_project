@@ -1,0 +1,22 @@
+<!-- notas/templates/notas/nota_confirm_delete.html -->
+{% extends "notas/base.html" %}
+
+{% block title %}Confirmar Eliminación{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="card text-center">
+            <div class="card-header">
+                <h2 class="mb-0">Confirmar Eliminación</h2>
+            </div>
+            <div class="card-body">
+                <p>¿Estás seguro de que quieres eliminar la nota "<strong>{{ object.titulo }}</strong>" del día <strong>{{ object.fecha|date:"d M, Y" }}</strong>?</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Sí, Eliminar</button>
+                    <a href="{% url 'notas:detalle_nota' object.pk %}" class="btn btn-secondary ms-2">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

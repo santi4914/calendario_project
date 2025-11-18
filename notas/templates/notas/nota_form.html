@@ -1,0 +1,24 @@
+<!-- notas/templates/notas/nota_form.html -->
+{% extends "notas/base.html" %}
+
+{% block title %}
+    {% if form.instance.pk %}Editar Nota{% else %}Crear Nota{% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">{% if form.instance.pk %}Editar Nota{% else %}Crear Nueva Nota{% endif %}</h2>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %} <!-- Protección CSRF -->
+                    {{ form.as_p }} <!-- Renderiza el formulario como párrafos -->
+                    <button type="submit" class="btn btn-primary">Guardar Nota</button>
+                    <a href="{% url 'notas:calendario' %}" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

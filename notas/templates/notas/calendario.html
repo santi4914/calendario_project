@@ -1,0 +1,48 @@
+<!-- notas/templates/notas/calendario.html -->
+{% extends "notas/base.html" %}
+{% load humanize %} <!-- Para nombres de meses y fechas más amigables si lo usas -->
+
+{% block title %}Calendario - {{ current_date|date:"F Y" }}{% endblock %}
+
+{% block content %}
+    <div class="container-fluid mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <a href="{% url 'notas:calendario_mes' prev_month_year prev_month %}" class="btn btn-sm btn-outline-primary">Anterior</a>
+            <h2 class="text-center mb-0">{{ current_date|date:"F Y"|capfirst }}</h2>
+            <a href="{% url 'notas:calendario_mes' next_month_year next_month %}" class="btn btn-sm btn-outline-primary">Siguiente</a>
+        </div>
+
+        <div class="calendar-grid">
+            <div class="calendar-day-name">Dom</div>
+            <div class="calendar-day-name">Lun</div>
+            <div class="calendar-day-name">Mar</div>
+            <div class="calendar-day-name">Mié</div>
+            <div class="calendar-day-name">Jue</div>
+            <div class="calendar-day-name">Vie</div>
+            <div class="calendar-day-name">Sáb</div>
+
+            {% for week in month_days %}
+                {% for day in week %}
+                    <div class="calendar-day-cell
+                        {% if day.month != current_date.month %}other-month{% endif %}
+                        {% if day == today %}today{% endif %}
+                        {% if notes_by_day|get_item:day %}has-notes{% endif %}
+                    ">
+                        <span class="day-number">{{ day.day }}</span>
+                        <br>
+                        <a href="{% url 'notas:crear_nota' day.year day.month day.day %}" class="badge bg-success text-white small mt-1">
+                            + Añadir nota
+                        </a>
+                        {% if notes_by_day|get_item:day %}
+                            <div class="notes-for-day mt-2">
+                                {% for note in notes_by_day|get_item:day %}
+                                    <a href="{% url 'notas:detalle_nota' note.pk %}" class="note-link">{{ note.titulo|truncatechars:20 }}</a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

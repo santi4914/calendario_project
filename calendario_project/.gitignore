@@ -1,0 +1,12 @@
+# .gitignore
+# Entorno virtual
+/venv/
+/.idea/          # Para usuarios de PyCharm
+.vscode/         # Para usuarios de VS Code
+__pycache__/     # Caché de Python
+*.pyc
+.DS_Store        # Archivos de macOS
+/db.sqlite3      # Base de datos de desarrollo de Django
+/media/          # Si tienes archivos subidos por usuarios
+/static_root/    # Si usas collectstatic en producción
+.env             # Archivos de variables de entorno (si los usas)

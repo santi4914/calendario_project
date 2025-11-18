@@ -1,0 +1,25 @@
+<!-- notas/templates/notas/nota_detail.html -->
+{% extends "notas/base.html" %}
+
+{% block title %}Detalle de Nota: {{ nota.titulo }}{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">{{ nota.titulo }}</h2>
+            </div>
+            <div class="card-body">
+                <p><strong>Fecha:</strong> {{ nota.fecha|date:"d M, Y" }}</p>
+                <p><strong>Creada el:</strong> {{ nota.fecha_creacion|date:"d M, Y H:i" }}</p>
+                <p><strong>Contenido:</strong></p>
+                <p>{{ nota.contenido|linebreaksbr }}</p>
+            </div>
+            <div class="card-footer d-flex justify-content-end">
+                <a href="{% url 'notas:editar_nota' nota.pk %}" class="btn btn-warning btn-sm me-2">Editar</a>
+                <a href="{% url 'notas:eliminar_nota' nota.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                <a href="{% url 'notas:calendario_mes' nota.fecha.year nota.fecha.month %}" class="btn btn-secondary btn-sm ms-2">Volver al Calendario</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
